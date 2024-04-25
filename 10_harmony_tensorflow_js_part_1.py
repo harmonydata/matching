@@ -31,7 +31,7 @@ for input_file, data in evaluation_helper.get_datasets():
             text_element.send_keys(Keys.BACK_SPACE)
         text_element.send_keys(question_text)
 
-        time.sleep(1)
+        time.sleep(2)
 
         button = driver.find_element(By.XPATH, "//button[@id='mybutton']")
         button.click()

@@ -14,9 +14,13 @@ with open("10_tensorflow_js_vectors.json", "r", encoding="utf-8") as f:
 def convert_texts_to_vector(texts):
     vectors = []
     for text in texts:
-        vec_str = question_to_vector[text]
-        vec = json.loads(vec)
-        vectors.append(vec)
+        if text in question_to_vector:
+            vec_str = question_to_vector[text]
+            vec_str = re.sub(r'.+=\s+\\*\s*', '', vec_str)
+            vec = json.loads(vec_str)
+        else:
+            vec = [0.00001] * 512
+        vectors.append(np.asarray(vec))
     return np.asarray(vectors)
 
 
@@ -41,5 +45,7 @@ for input_file, data in evaluation_helper.get_datasets():
         preds[idx] = np.abs(similarity[idx_1, idx_2])
 
     data["y_pred"] = preds
+
+    print(data["y_pred"].isna().sum())
 
     evaluation_helper.save_results(input_file, data)
