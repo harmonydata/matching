@@ -7,7 +7,7 @@ from harmony.schemas.requests.text import Instrument, Question
 
 import evaluation_helper
 
-with open("10a_tensorflow_js_vectors.json", "r", encoding="utf-8") as f:
+with open("10_tensorflow_js_vectors.json", "r", encoding="utf-8") as f:
     question_to_vector = json.loads(f.read())
 
 
