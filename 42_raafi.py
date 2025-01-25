@@ -1,6 +1,22 @@
 import os
+import wget
+import zipfile
 
-os.environ["HARMONY_SENTENCE_TRANSFORMER_PATH"] = "model_jose"
+model_name = "model_raafi"
+if not os.path.exists(f"{model_name}.zip"):
+    url = f"https://harmonyapistorage.z33.web.core.windows.net/{model_name}.zip"
+    print (f"Downloading model from {url}")
+    path_to_zip_file = wget.download(url)
+else:
+    path_to_zip_file = f"{model_name}.zip"
+
+if not os.path.isdir(model_name):
+    with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
+        zip_ref.extractall(model_name)
+
+
+os.environ["HARMONY_SENTENCE_TRANSFORMER_PATH"] = model_name
+
 
 import re
 
@@ -9,6 +25,8 @@ import numpy as np
 from harmony.schemas.requests.text import Instrument, Question
 
 import evaluation_helper
+
+
 
 re_tokeniser = re.compile(r'([a-z]+)')
 
@@ -19,7 +37,8 @@ for input_file, data in evaluation_helper.get_datasets():
     for idx, question_text in enumerate(all_questions):
         questions.append(Question(question_text=question_text, question_no=f"{idx}"))
     instrument = Instrument(questions=questions)
-    questions, similarity, query_similarity, new_vectors_dict = harmony.match_instruments([instrument])
+    match_response = harmony.match_instruments([instrument])
+    similarity = match_response.similarity_with_polarity
     preds = [0] * len(data)
     for idx in range(len(data)):
         text_1 = data.text_1.iloc[idx]

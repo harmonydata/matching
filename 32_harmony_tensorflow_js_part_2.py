@@ -33,7 +33,7 @@ for input_file, data in evaluation_helper.get_datasets():
     for idx, question_text in enumerate(all_questions):
         questions.append(Question(question_text=question_text, question_no=f"{idx}"))
     instrument = Instrument(questions=questions)
-    questions, similarity, query_similarity, new_vectors_dict = harmony.match_instruments_with_function([instrument],
+    match_response = harmony.match_instruments_with_function([instrument],
                                                                                                         None,
                                                                                                         convert_texts_to_vector)
     preds = [0] * len(data)

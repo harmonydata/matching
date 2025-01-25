@@ -1,7 +1,3 @@
-import os
-
-os.environ["HARMONY_SENTENCE_TRANSFORMER_PATH"] = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-
 import re
 
 import harmony
@@ -20,7 +16,6 @@ for input_file, data in evaluation_helper.get_datasets():
         questions.append(Question(question_text=question_text, question_no=f"{idx}"))
     instrument = Instrument(questions=questions)
     match_response = harmony.match_instruments([instrument])
-    similarity = match_response.similarity_with_polarity
     preds = [0] * len(data)
     for idx in range(len(data)):
         text_1 = data.text_1.iloc[idx]

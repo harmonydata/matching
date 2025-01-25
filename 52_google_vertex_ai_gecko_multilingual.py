@@ -15,7 +15,7 @@ headers = {
     'Authorization': f'Bearer {access_token}',
     'Content-Type': 'application/json',
 }
-model_id = "textembedding-gecko@003"
+model_id = "textembedding-gecko-multilingual"
 
 for input_file, data in evaluation_helper.get_datasets():
     all_questions = list(sorted(set(data.text_1).union(set(data.text_2))))
@@ -53,9 +53,10 @@ for input_file, data in evaluation_helper.get_datasets():
         return np.asarray(embeddings_as_list)
 
 
-    all_questions, similarity, query_similarity, new_vectors_dict = harmony.match_instruments_with_function(
+    match_response = harmony.match_instruments_with_function(
         [instrument], None,
         convert_texts_to_vector)
+    similarity = match_response.similarity_with_polarity
 
     preds = [0] * len(data)
     for idx in range(len(data)):

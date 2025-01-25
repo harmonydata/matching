@@ -1,21 +1,9 @@
-import json
-import os
-
 import harmony
 import numpy as np
-import requests
+import openai
 from harmony.schemas.requests.text import Instrument, Question
 
 import evaluation_helper
-
-project_id = os.getenv("PROJECT_ID")
-access_token = os.getenv("ACCESS_TOKEN")  # output of gcloud auth print-access-token
-
-headers = {
-    'Authorization': f'Bearer {access_token}',
-    'Content-Type': 'application/json',
-}
-model_id = "textembedding-gecko-multilingual"
 
 for input_file, data in evaluation_helper.get_datasets():
     all_questions = list(sorted(set(data.text_1).union(set(data.text_2))))
@@ -24,6 +12,8 @@ for input_file, data in evaluation_helper.get_datasets():
     for idx, question_text in enumerate(all_questions):
         questions.append(Question(question_text=question_text, question_no=f"{idx}"))
     instrument = Instrument(questions=questions)
+
+    model_name = "text-embedding-3-large"
 
 
     def convert_texts_to_vector(texts):
@@ -38,24 +28,15 @@ for input_file, data in evaluation_helper.get_datasets():
             if batch_end > len(texts):
                 batch_end = len(texts)
             batch = texts[batch_start:batch_end]
-
-            data_obj = {"instances": [{"content": t} for t in batch]}
-            data_json = json.dumps(data_obj)
-
-            response = requests.post(
-                f'https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/{model_id}:predict',
-                headers=headers,
-                data=data_json,
-            )
-            batch_response = [np.asarray(x['embeddings']['values']) for x in response.json()['predictions']]
-
-            embeddings_as_list.extend(batch_response)
+            vectors = openai.Embedding.create(input=batch, model=model_name)['data']
+            embeddings_as_list.extend([vectors[i]["embedding"] for i in range(len(vectors))])
         return np.asarray(embeddings_as_list)
 
 
-    all_questions, similarity, query_similarity, new_vectors_dict = harmony.match_instruments_with_function(
+    match_response = harmony.match_instruments_with_function(
         [instrument], None,
         convert_texts_to_vector)
+    similarity = match_response.similarity_with_polarity
 
     preds = [0] * len(data)
     for idx in range(len(data)):
