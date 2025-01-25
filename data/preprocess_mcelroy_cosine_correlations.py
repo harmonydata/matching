@@ -38,4 +38,4 @@ supp["text_2"] = supp["to"].map(item_no_to_text)
 
 supp.rename(columns={"spearman": "y"}, inplace=True)
 
-supp[["text_1", "text_2", "y", "cosine"]].to_csv("mcelroy_cosine_correlation.csv", index=False, sep="\t")
+supp[["text_1", "text_2", "y"]].to_csv("mcelroy_cosine_correlation_continuous.csv", index=False, sep="\t")
