@@ -15,4 +15,4 @@ def get_datasets():
 
 
 def save_results(input_file, data):
-    data[["y_pred"]].to_csv(f"{output_file}_model_on_{input_file}.zip", index=False, sep="\t")
+    data[["y_pred"]].to_csv(f"{output_file}_model_on_{input_file}.csv", index=False, sep="\t")

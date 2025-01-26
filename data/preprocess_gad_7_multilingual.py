@@ -30,11 +30,17 @@ import pandas as pd
 
 all_questions_seen = []
 all_idxs = []
+all_instruments = set()
 for instrument_name, instrument in harmony.example_instruments.items():
     if "GAD" in instrument_name:
+        all_instruments.add(instrument_name)
         for question_idx, question in enumerate(instrument.questions):
-            all_questions_seen.append(question.question_text)
-            all_idxs.append(question_idx)
+            if question_idx < 7:
+                all_questions_seen.append(question.question_text)
+                all_idxs.append(question_idx)
+print (f"Number of instruments: {len(all_instruments)}")
+print ("Instruments: " + ", ".join(all_instruments))
+print (f"Number of questions: {len(all_questions_seen)}")
 
 text_1 = []
 text_2 = []

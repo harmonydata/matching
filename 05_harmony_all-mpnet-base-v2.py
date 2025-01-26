@@ -1,21 +1,16 @@
-from typing import List
+import os
+
+os.environ["HARMONY_SENTENCE_TRANSFORMER_PATH"] = "sentence-transformers/all-mpnet-base-v2"
+
+import re
 
 import harmony
 import numpy as np
-from harmony.schemas.requests.text import Instrument
-from harmony.schemas.requests.text import Question
-from sentence_transformers import SentenceTransformer
+from harmony.schemas.requests.text import Instrument, Question
 
 import evaluation_helper
 
-model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
-
-
-def convert_texts_to_vector(texts: List) -> np.ndarray:
-    embeddings = model.encode(sentences=texts, convert_to_numpy=True)
-
-    return embeddings
-
+re_tokeniser = re.compile(r'([a-z]+)')
 
 for input_file, data in evaluation_helper.get_datasets():
     all_questions = list(sorted(set(data.text_1).union(set(data.text_2))))
@@ -24,9 +19,7 @@ for input_file, data in evaluation_helper.get_datasets():
     for idx, question_text in enumerate(all_questions):
         questions.append(Question(question_text=question_text, question_no=f"{idx}"))
     instrument = Instrument(questions=questions)
-    match_response = harmony.match_instruments_with_function([instrument],
-                                                                                                        None,
-                                                                                                        convert_texts_to_vector)
+    match_response = harmony.match_instruments([instrument])
     similarity = match_response.similarity_with_polarity
     preds = [0] * len(data)
     for idx in range(len(data)):
