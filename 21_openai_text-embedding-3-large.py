@@ -1,6 +1,8 @@
 import harmony
 import numpy as np
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 from harmony.schemas.requests.text import Instrument, Question
 
 import evaluation_helper
@@ -28,8 +30,8 @@ for input_file, data in evaluation_helper.get_datasets():
             if batch_end > len(texts):
                 batch_end = len(texts)
             batch = texts[batch_start:batch_end]
-            vectors = openai.Embedding.create(input=batch, model=model_name)['data']
-            embeddings_as_list.extend([vectors[i]["embedding"] for i in range(len(vectors))])
+            vectors = client.embeddings.create(input = batch, model=model_name).data
+            embeddings_as_list.extend([vectors[i].embedding for i in range(len(vectors))])
         return np.asarray(embeddings_as_list)
 
 
