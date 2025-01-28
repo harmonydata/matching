@@ -1,0 +1,783 @@
+---
+title: "Evaluating models on continuous datasets"
+output: html_document
+date: "2025-01-27"
+---
+
+```{r}
+library(ggplot2)
+```
+
+## Evaluating all models on dataset: Gorilla Test
+
+```{r}
+questions = read.csv("data/gorilla_test_continuous.csv", sep="	")
+```
+
+
+### Evaluate 00_bag_of_words on Gorilla Test
+
+```{r}
+results = read.csv("output/00_bag_of_words_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n00_bag_of_words\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 01_harmony_paraphrase-multilingual-MiniLM-L12-v2 on Gorilla Test
+
+```{r}
+results = read.csv("output/01_harmony_paraphrase-multilingual-MiniLM-L12-v2_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n01_harmony_paraphrase-multilingual-MiniLM-L12-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 02_harmony_distiluse-base-multilingual-cased-v2 on Gorilla Test
+
+```{r}
+results = read.csv("output/02_harmony_distiluse-base-multilingual-cased-v2_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n02_harmony_distiluse-base-multilingual-cased-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 03_harmony_stsb-xlm-r-multilingual on Gorilla Test
+
+```{r}
+results = read.csv("output/03_harmony_stsb-xlm-r-multilingual_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n03_harmony_stsb-xlm-r-multilingual\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 04_harmony_paraphrase-multilingual-mpnet-base-v2 on Gorilla Test
+
+```{r}
+results = read.csv("output/04_harmony_paraphrase-multilingual-mpnet-base-v2_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n04_harmony_paraphrase-multilingual-mpnet-base-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 05_harmony_all-mpnet-base-v2 on Gorilla Test
+
+```{r}
+results = read.csv("output/05_harmony_all-mpnet-base-v2_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n05_harmony_all-mpnet-base-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 10_jose on Gorilla Test
+
+```{r}
+results = read.csv("output/10_jose_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n10_jose\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 11_raafi on Gorilla Test
+
+```{r}
+results = read.csv("output/11_raafi_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n11_raafi\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 20_openai_text-embedding-ada-002 on Gorilla Test
+
+```{r}
+results = read.csv("output/20_openai_text-embedding-ada-002_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n20_openai_text-embedding-ada-002\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 21_openai_text-embedding-3-large on Gorilla Test
+
+```{r}
+results = read.csv("output/21_openai_text-embedding-3-large_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n21_openai_text-embedding-3-large\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 40_google_vertex_ai_gecko on Gorilla Test
+
+```{r}
+results = read.csv("output/40_google_vertex_ai_gecko_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n40_google_vertex_ai_gecko\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 41_google_vertex_ai_gecko_multilingual on Gorilla Test
+
+```{r}
+results = read.csv("output/41_google_vertex_ai_gecko_multilingual_model_on_gorilla_test_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Test: predictions of model\n41_google_vertex_ai_gecko_multilingual\nvs ground truth (y)")
+```
+
+
+## Evaluating all models on dataset: Gorilla Train
+
+```{r}
+questions = read.csv("data/gorilla_train_continuous.csv", sep="	")
+```
+
+
+### Evaluate 00_bag_of_words on Gorilla Train
+
+```{r}
+results = read.csv("output/00_bag_of_words_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n00_bag_of_words\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 01_harmony_paraphrase-multilingual-MiniLM-L12-v2 on Gorilla Train
+
+```{r}
+results = read.csv("output/01_harmony_paraphrase-multilingual-MiniLM-L12-v2_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n01_harmony_paraphrase-multilingual-MiniLM-L12-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 02_harmony_distiluse-base-multilingual-cased-v2 on Gorilla Train
+
+```{r}
+results = read.csv("output/02_harmony_distiluse-base-multilingual-cased-v2_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n02_harmony_distiluse-base-multilingual-cased-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 03_harmony_stsb-xlm-r-multilingual on Gorilla Train
+
+```{r}
+results = read.csv("output/03_harmony_stsb-xlm-r-multilingual_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n03_harmony_stsb-xlm-r-multilingual\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 04_harmony_paraphrase-multilingual-mpnet-base-v2 on Gorilla Train
+
+```{r}
+results = read.csv("output/04_harmony_paraphrase-multilingual-mpnet-base-v2_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n04_harmony_paraphrase-multilingual-mpnet-base-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 05_harmony_all-mpnet-base-v2 on Gorilla Train
+
+```{r}
+results = read.csv("output/05_harmony_all-mpnet-base-v2_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n05_harmony_all-mpnet-base-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 10_jose on Gorilla Train
+
+```{r}
+results = read.csv("output/10_jose_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n10_jose\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 11_raafi on Gorilla Train
+
+```{r}
+results = read.csv("output/11_raafi_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n11_raafi\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 20_openai_text-embedding-ada-002 on Gorilla Train
+
+```{r}
+results = read.csv("output/20_openai_text-embedding-ada-002_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n20_openai_text-embedding-ada-002\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 21_openai_text-embedding-3-large on Gorilla Train
+
+```{r}
+results = read.csv("output/21_openai_text-embedding-3-large_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n21_openai_text-embedding-3-large\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 40_google_vertex_ai_gecko on Gorilla Train
+
+```{r}
+results = read.csv("output/40_google_vertex_ai_gecko_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n40_google_vertex_ai_gecko\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 41_google_vertex_ai_gecko_multilingual on Gorilla Train
+
+```{r}
+results = read.csv("output/41_google_vertex_ai_gecko_multilingual_model_on_gorilla_train_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: Gorilla Train: predictions of model\n41_google_vertex_ai_gecko_multilingual\nvs ground truth (y)")
+```
+
+
+## Evaluating all models on dataset: McElroy 2024 Cosine Correlation
+
+```{r}
+questions = read.csv("data/mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+
+### Evaluate 00_bag_of_words on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/00_bag_of_words_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n00_bag_of_words\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 01_harmony_paraphrase-multilingual-MiniLM-L12-v2 on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/01_harmony_paraphrase-multilingual-MiniLM-L12-v2_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n01_harmony_paraphrase-multilingual-MiniLM-L12-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 02_harmony_distiluse-base-multilingual-cased-v2 on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/02_harmony_distiluse-base-multilingual-cased-v2_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n02_harmony_distiluse-base-multilingual-cased-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 03_harmony_stsb-xlm-r-multilingual on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/03_harmony_stsb-xlm-r-multilingual_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n03_harmony_stsb-xlm-r-multilingual\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 04_harmony_paraphrase-multilingual-mpnet-base-v2 on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/04_harmony_paraphrase-multilingual-mpnet-base-v2_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n04_harmony_paraphrase-multilingual-mpnet-base-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 05_harmony_all-mpnet-base-v2 on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/05_harmony_all-mpnet-base-v2_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n05_harmony_all-mpnet-base-v2\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 10_jose on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/10_jose_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n10_jose\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 11_raafi on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/11_raafi_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n11_raafi\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 20_openai_text-embedding-ada-002 on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/20_openai_text-embedding-ada-002_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n20_openai_text-embedding-ada-002\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 21_openai_text-embedding-3-large on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/21_openai_text-embedding-3-large_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n21_openai_text-embedding-3-large\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 40_google_vertex_ai_gecko on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/40_google_vertex_ai_gecko_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n40_google_vertex_ai_gecko\nvs ground truth (y)")
+```
+
+
+
+### Evaluate 41_google_vertex_ai_gecko_multilingual on McElroy 2024 Cosine Correlation
+
+```{r}
+results = read.csv("output/41_google_vertex_ai_gecko_multilingual_model_on_mcelroy_2024_cosine_correlation_continuous.csv", sep="	")
+```
+
+```{r}
+results$y = questions$y
+```
+
+```{r}
+model = lm(results$y_pred ~ questions$y)
+summary(model)
+```
+
+```{r}
+ggplot(results, aes(x = y, y = y_pred) ) + geom_point() + geom_smooth(method = "lm") + ggtitle("Dataset: McElroy 2024 Cosine Correlation: predictions of model\n41_google_vertex_ai_gecko_multilingual\nvs ground truth (y)")
+```
+
